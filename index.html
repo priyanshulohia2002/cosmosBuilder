@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Builder - Building Dreams Into Reality</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Stars */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            z-index: 10;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideDown 0.8s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #ffd700;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 8rem 5% 4rem;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-180deg) scale(0);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.6s both, float 3s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Services Section */
+        .services {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .service-card:nth-child(1) {
+            animation: slideInLeft 1s ease 0.2s both;
+        }
+
+        .service-card:nth-child(2) {
+            animation: zoomIn 1s ease 0.4s both;
+        }
+
+        .service-card:nth-child(3) {
+            animation: slideInRight 1s ease 0.6s both;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            animation: rotateIn 0.6s ease;
+            transform: scale(1.2);
+        }
+
+        /* Upload Section */
+        .upload-section {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .upload-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease both;
+        }
+
+        /* Other Services Section */
+        .other-services-section {
+            position: relative;
+            z-index: 1;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(15px);
+            transition: all 0.8s ease, padding 0.8s ease;
+            opacity: 0;
+        }
+
+        .other-services-section.active {
+            padding: 4rem 5%;
+            max-height: 2000px;
+            opacity: 1;
+        }
+
+        .other-services-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .other-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .other-service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.4s;
+            animation: fadeInUp 1s ease both;
+        }
+
+        .other-service-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .other-service-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .other-service-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .other-service-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .other-service-card:hover {
+            transform: translateY(-10px) scale(1.02) rotate(-1deg);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 255, 255, 0.1));
+            border-color: #ffd700;
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+        }
+
+        .other-service-card .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .other-service-card:hover .service-icon {
+            animation: pulse 0.6s ease;
+            transform: scale(1.3) rotateY(360deg);
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            position: relative;
+            z-index: 1;
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .portfolio-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #ffd700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease both;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s;
+            animation: scaleIn 0.5s ease;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.4);
+            border-color: #ffd700;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s;
+        }
+
+        .portfolio-item video {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s;
+        }
+
+        .portfolio-item:hover img,
+        .portfolio-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            color: rgba(255, 215, 0, 0.9);
+            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        .portfolio-placeholder {
+            text-align: center;
+            opacity: 0.6;
+            padding: 2rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .upload-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .upload-container:hover {
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid #ffd700;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+
+        .upload-btn:hover {
+            background: #ffd700;
+            color: #333;
+            transform: scale(1.05);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: scaleIn 0.3s ease;
+            transition: all 0.3s;
+        }
+
+        .preview-img:hover {
+            transform: scale(1.1) rotate(3deg);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 2rem 5%;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            margin-top: 4rem;
+            animation: fadeInUp 1s ease both;
+        }
+
+        footer h3 {
+            animation: zoomIn 0.8s ease;
+        }
+
+        footer .contact-card {
+            animation: fadeInUp 1s ease both;
+        }
+
+        footer .contact-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        footer .contact-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        footer .contact-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.2);
+            }
+
+            50% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars" id="stars"></div>
+
+    <header>
+        <div class="logo">✨ Cosmos Builder</div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#upload">Gallery</a>
+            <a href="#other-services" id="cosmosLink">Cosmos Telecom</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Building Dreams Into Reality</h1>
+        <p>Expert Construction • Interior Design • Premium Properties</p>
+        <a href="#services" class="cta-btn">Explore Our Work</a>
+    </section>
+
+    <section class="services" id="services">
+        <div class="service-card">
+            <div class="service-icon">🏗️</div>
+            <h3>Construction</h3>
+            <p>From foundation to finish, we build structures that stand the test of time with precision and excellence.
+            </p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Interior Design</h3>
+            <p>Transform your space into a masterpiece with our innovative design solutions tailored to your vision.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🏠</div>
+            <h3>Property Sales</h3>
+            <p>Discover premium properties that combine luxury, comfort, and value in prime locations.</p>
+        </div>
+    </section>
+
+    <section class="portfolio-section" id="portfolio">
+        <h2>Our Work Portfolio</h2>
+        <p style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.2rem; opacity: 0.9;">Explore our completed
+            projects and see the quality of our craftsmanship</p>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Portfolio items will be loaded here by JavaScript -->
+        </div>
+    </section>
+
+    <section class="upload-section" id="upload">
+        <h2>Share Your Vision</h2>
+        <div class="upload-container">
+            <p style="margin-bottom: 1rem;">Upload photos of your dream space or inspiration</p>
+            <label for="fileInput" class="upload-btn">
+                📷 Choose Photos
+            </label>
+            <input type="file" id="fileInput" multiple accept="image/*">
+            <div class="preview-container" id="previewContainer"></div>
+        </div>
+    </section>
+
+    <section class="other-services-section" id="other-services">
+        <h2>Explore Cosmos Telecom</h2>
+        <p style="max-width: 800px; margin: 0 auto 3rem; font-size: 1.2rem; opacity: 0.9;">Your one-stop destination for
+            mobile solutions and financial services</p>
+
+        <div class="other-services-grid">
+            <div class="other-service-card">
+                <div class="service-icon">📱</div>
+                <h3>Mobile Phones</h3>
+                <p>Latest smartphones and feature phones from top brands at competitive prices</p>
+            </div>
+            <div class="other-service-card">
+                <div class="service-icon">🎧</div>
+                <h3>Phone Accessories</h3>
+                <p>Premium cases, chargers, earphones, and all mobile accessories you need</p>
+            </div>
+            <div class="other-service-card">
+                <div class="service-icon">💳</div>
+                <h3>Credit Card Services</h3>
+                <p>Convenient credit card to cash conversion and financial solutions</p>
+            </div>
+            <div class="other-service-card">
+                <div class="service-icon">🚄</div>
+                <h3>Travel Bookings</h3>
+                <p>Train and flight ticket booking services for hassle-free travel</p>
+            </div>
+        </div>
+
+        <a href="https://www.google.com/search?q=cosmos+telecom&rlz=1C5CHFA_enIN1124IN1125&oq=cosmos+telecom"
+            target="_blank" class="cta-btn" style="margin-top: 2rem;">
+            🌟 Visit Cosmos Telecom
+        </a>
+    </section>
+
+    <footer id="contact">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3
+                style="font-size: 2rem; margin-bottom: 1.5rem; background: linear-gradient(45deg, #fff, #ffd700); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                Contact Cosmos Builder</h3>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+                <div class="contact-card"
+                    style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.2); transition: all 0.3s;"
+                    onmouseover="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 215, 0, 0.5)'; this.style.transform='translateY(-5px)'"
+                    onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 215, 0, 0.2)'; this.style.transform='translateY(0)'">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">📧</div>
+                    <p style="opacity: 0.8; font-size: 0.8rem; margin-bottom: 0.4rem;">Email Us</p>
+                    <a href="mailto:cosmostelecom2015@gmail.com"
+                        style="color: #ffd700; text-decoration: none; font-weight: 500; font-size: 0.70rem;">cosmostelecom2015@gmail.com</a>
+                </div>
+
+                <div class="contact-card"
+                    style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.2); transition: all 0.3s;"
+                    onmouseover="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 215, 0, 0.5)'; this.style.transform='translateY(-5px)'"
+                    onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 215, 0, 0.2)'; this.style.transform='translateY(0)'">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">📱</div>
+                    <p style="opacity: 0.8; font-size: 0.8rem; margin-bottom: 0.4rem;">Call Us</p>
+                    <a href="tel:+919810999564"
+                        style="color: #ffd700; text-decoration: none; font-weight: 500; font-size: 0.9rem;">+91 98109
+                        99564</a>
+                </div>
+
+                <div class="contact-card"
+                    style="background: rgba(37, 211, 102, 0.1); padding: 1rem; border-radius: 12px; border: 1px solid rgba(37, 211, 102, 0.3); transition: all 0.3s;"
+                    onmouseover="this.style.background='rgba(37, 211, 102, 0.15)'; this.style.borderColor='rgba(37, 211, 102, 0.6)'; this.style.transform='translateY(-5px)'"
+                    onmouseout="this.style.background='rgba(37, 211, 102, 0.1)'; this.style.borderColor='rgba(37, 211, 102, 0.3)'; this.style.transform='translateY(0)'">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">💬</div>
+                    <p style="opacity: 0.8; font-size: 0.8rem; margin-bottom: 0.4rem;">WhatsApp Chat</p>
+                    <a href="https://wa.me/919810999564?text=Hi%20Cosmos%20Builder!%20I%27m%20interested%20in%20your%20services."
+                        target="_blank"
+                        style="color: #25D366; text-decoration: none; font-weight: 500; font-size: 0.9rem;">Start
+                        Chat</a>
+                </div>
+
+                <div class="contact-card"
+                    style="background: rgba(255, 255, 255, 0.05); padding: 1rem; border-radius: 12px; border: 1px solid rgba(255, 215, 0, 0.2); transition: all 0.3s;"
+                    onmouseover="this.style.background='rgba(255, 255, 255, 0.1)'; this.style.borderColor='rgba(255, 215, 0, 0.5)'; this.style.transform='translateY(-5px)'"
+                    onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 215, 0, 0.2)'; this.style.transform='translateY(0)'">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.4rem;">📍</div>
+                    <p style="opacity: 0.8; font-size: 0.8rem; margin-bottom: 0.4rem;">Visit Us</p>
+                    <p style="color: #ffd700; font-weight: 500; font-size: 0.9rem;">Aya nagar, Delhi</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(255, 215, 0, 0.3);">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    <span style="opacity: 0.8;">Crafted with </span>
+                    <span style="color: #ff6b6b; animation: heartbeat 1.5s ease-in-out infinite;">❤️</span>
+                    <span style="opacity: 0.8;"> by</span>
+                </p>
+                <p style="font-size: 1.3rem; margin-bottom: 1rem;">
+                    <strong
+                        style="background: linear-gradient(45deg, #ffd700, #ffed4e); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Priyanshu
+                        Lohia</strong>
+                </p>
+                <p style="margin-bottom: 1rem; opacity: 0.9; font-style: italic;">Software Engineer | Full Stack
+                    Developer</p>
+
+                <div
+                    style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                    <a href="https://drive.google.com/file/d/1j-bl4BVK3VNRZQj9zLXiIgNNdEMxf0A6/view?usp=sharing"
+                        target="_blank"
+                        style="background: rgba(255, 215, 0, 0.1); color: #ffd700; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 25px; border: 2px solid #ffd700; transition: all 0.3s; font-weight: 500;"
+                        onmouseover="this.style.background='#ffd700'; this.style.color='#333'; this.style.transform='translateY(-3px)'"
+                        onmouseout="this.style.background='rgba(255, 215, 0, 0.1)'; this.style.color='#ffd700'; this.style.transform='translateY(0)'">
+                        📄 Resume
+                    </a>
+                    <a href="mailto:pryanshulohia1234@gmail.com"
+                        style="background: rgba(255, 215, 0, 0.1); color: #ffd700; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 25px; border: 2px solid #ffd700; transition: all 0.3s; font-weight: 500;"
+                        onmouseover="this.style.background='#ffd700'; this.style.color='#333'; this.style.transform='translateY(-3px)'"
+                        onmouseout="this.style.background='rgba(255, 215, 0, 0.1)'; this.style.color='#ffd700'; this.style.transform='translateY(0)'">
+                        📧 Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/priyanshu-lohia" target="_blank"
+                        style="background: rgba(255, 215, 0, 0.1); color: #ffd700; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 25px; border: 2px solid #ffd700; transition: all 0.3s; font-weight: 500;"
+                        onmouseover="this.style.background='#ffd700'; this.style.color='#333'; this.style.transform='translateY(-3px)'"
+                        onmouseout="this.style.background='rgba(255, 215, 0, 0.1)'; this.style.color='#ffd700'; this.style.transform='translateY(0)'">
+                        💼 LinkedIn
+                    </a>
+                    <a href="tel:+917838408040"
+                        style="background: rgba(255, 215, 0, 0.1); color: #ffd700; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 25px; border: 2px solid #ffd700; transition: all 0.3s; font-weight: 500;"
+                        onmouseover="this.style.background='#ffd700'; this.style.color='#333'; this.style.transform='translateY(-3px)'"
+                        onmouseout="this.style.background='rgba(255, 215, 0, 0.1)'; this.style.color='#ffd700'; this.style.transform='translateY(0)'">
+                        📱 +91 7838408040
+                    </a>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; opacity: 0.6; font-size: 0.9rem;">© 2025 Cosmos Builder. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Generate animated stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Portfolio Auto-loader - Automatically detects and displays all images and videos
+        // Just add your files to the 'portfolio' folder and they will appear automatically!
+
+        // List all your portfolio files here (the script will auto-detect type)
+        const portfolioFiles = [
+            'project1.jpg',
+            'project2.png',
+            'project3.jpeg',
+            'video1.mp4',
+            'video2.mp4',
+            'video3.mp4',
+            // Add more filenames here - just the filename, not the full path!
+            // Supported image formats: .jpg, .jpeg, .png, .gif, .webp
+            // Supported video formats: .mp4, .webm, .mov, .avi
+        ];
+
+        // Auto-detect file type based on extension
+        function getFileType(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg'];
+            const videoExts = ['mp4', 'webm', 'mov', 'avi', 'mkv', 'flv'];
+
+            if (imageExts.includes(ext)) return 'image';
+            if (videoExts.includes(ext)) return 'video';
+            return 'unknown';
+        }
+
+        // Convert filename list to portfolio items with auto-detection
+        const portfolioItems = portfolioFiles.map(filename => ({
+            type: getFileType(filename),
+            src: `portfolio/${filename}`,
+            name: filename
+        })).filter(item => item.type !== 'unknown');
+
+        // Load portfolio items
+        const portfolioGrid = document.getElementById('portfolioGrid');
+
+        if (portfolioItems.length === 0) {
+            // Show placeholder if no items
+            const placeholder = document.createElement('div');
+            placeholder.style.gridColumn = '1 / -1';
+            placeholder.style.textAlign = 'center';
+            placeholder.style.padding = '4rem';
+            placeholder.innerHTML = `
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📸</div>
+                <h3 style="margin-bottom: 1rem;">No Portfolio Items Yet</h3>
+                <p style="opacity: 0.7;">Add your images and videos to the portfolio array in the JavaScript section</p>
+                <p style="opacity: 0.5; margin-top: 1rem; font-size: 0.9rem;">Format: { type: 'image', src: 'portfolio/yourfile.jpg' }</p>
+            `;
+            portfolioGrid.appendChild(placeholder);
+        } else {
+            portfolioItems.forEach((item, index) => {
+                const portfolioItem = document.createElement('div');
+                portfolioItem.className = 'portfolio-item';
+                portfolioItem.style.animationDelay = `${index * 0.1}s`;
+
+                if (item.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = `Project ${index + 1}`;
+
+                    img.onerror = function () {
+                        // If image fails to load, show placeholder
+                        portfolioItem.innerHTML = `
+                            <div class="portfolio-placeholder">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">🖼️</div>
+                                <p>Image not found</p>
+                                <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 0.5rem;">${item.src}</p>
+                            </div>
+                        `;
+                    };
+
+                    portfolioItem.appendChild(img);
+                } else if (item.type === 'video') {
+                    const video = document.createElement('video');
+                    video.src = item.src;
+                    video.controls = true;
+                    video.preload = 'metadata';
+
+                    video.onerror = function () {
+                        // If video fails to load, show placeholder
+                        portfolioItem.innerHTML = `
+                            <div class="portfolio-placeholder">
+                                <div style="font-size: 3rem; margin-bottom: 1rem;">🎥</div>
+                                <p>Video not found</p>
+                                <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 0.5rem;">${item.src}</p>
+                            </div>
+                        `;
+                    };
+
+                    const playIcon = document.createElement('div');
+                    playIcon.className = 'play-icon';
+                    playIcon.textContent = '▶️';
+
+                    // Hide play icon when video is playing
+                    video.addEventListener('play', function () {
+                        playIcon.style.opacity = '0';
+                    });
+
+                    video.addEventListener('pause', function () {
+                        playIcon.style.opacity = '1';
+                    });
+
+                    portfolioItem.appendChild(video);
+                    portfolioItem.appendChild(playIcon);
+                }
+
+                portfolioGrid.appendChild(portfolioItem);
+            });
+        }
+        const fileInput = document.getElementById('fileInput');
+        const previewContainer = document.getElementById('previewContainer');
+        let uploadedImages = [];
+
+        fileInput.addEventListener('change', function (e) {
+            const files = Array.from(e.target.files);
+
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (event) {
+                        const img = document.createElement('img');
+                        img.src = event.target.result;
+                        img.className = 'preview-img';
+                        previewContainer.appendChild(img);
+                        uploadedImages.push(event.target.result);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Toggle Cosmos Telecom Section
+        const cosmosLink = document.getElementById('cosmosLink');
+        const cosmosSection = document.getElementById('other-services');
+        let isCosmosOpen = false;
+
+        cosmosLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            isCosmosOpen = !isCosmosOpen;
+
+            if (isCosmosOpen) {
+                cosmosSection.classList.add('active');
+                // Smooth scroll to section after it opens
+                setTimeout(() => {
+                    cosmosSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            } else {
+                cosmosSection.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+
+</html>
